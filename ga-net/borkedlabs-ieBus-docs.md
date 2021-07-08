@@ -24,7 +24,7 @@ The first useful bit of information in the uPD6708 datasheet is the IEBus packet
 The packet structure contains the fields which allow the devices to communicate between each
 other in a network freely. It also defines the transfer time as a function of data and frequency.
 
-iebus-2-1-signal-format.png
+![IEBus packet format](iebus-2-1-signal-format.png "IEBus packet format")
 
 A rundown of the IEBus packet is as follows:
 
@@ -48,7 +48,7 @@ of the slave address define the group number in that case.
 
 The actual bit waveform for IEBus is even more interesting as shown:
 
-iebus-2-4-bit-format.png
+![IEBus Bit Waveform](iebus-2-4-bit-format.png "IEBus Bit Waveform") 
 
 This kind of system of preparation periods of synchronous periods bares a very strong resemblance to
 Maxim’s 1-Wire protocol which is commonly used with EEPROM and other chips. The preparation period and
@@ -68,14 +68,15 @@ These are just really approximate times that I need to determine what clock freq
 
 Now hardware is the second important part to make an IEBus controller and the uPD6708 datasheet provides a good example of how its structured.
 
-iebus-internal-blocks.png
+![IEBus Internal Blocks](iebus-internal-blocks.png "IEBus Internal Blocks") 
 
 It has a simple receiver/driver pair similar to 485 or CANbus. The rest of the circuit is a filter(most likely glitch filter),
 a bit sequencer which handles converting between the waveform bit format to data bytes and then the actual logic of the chip.
 This can all be replicated by a microcontroller fairly easily if it is fast enough to process bits into bytes and determine
 actions within timing requirements. The actual logic voltages needed for the driver/receiver are also provided as:
 
-iebus-3-1-signal-relationship
+![IEBus Voltage Levels](iebus-3-1-signal-relationship.png "IEBus Voltage Levels")
+
 ## Going fowards
 
 Doing some extra research, I found an effort previously made starting in 2006 to decode the
